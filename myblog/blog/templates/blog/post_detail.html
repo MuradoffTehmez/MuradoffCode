@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    {% block content %}
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.created_at }}</p>
+        <p>{{ post.content }}</p>
+        <h2>Comments</h2>
+        {% for comment in post.comments.all %}
+            <div class="comment">
+                <p>{{ comment.author }}: {{ comment.content }}</p>
+            </div>
+        {% endfor %}
+        
+        {% if user.is_authenticated %}
+            <h2>Leave a Comment</h2>
+            <form method="post" action="{% url 'add_comment_to_post' post.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Add Comment</button>
+            </form>
+        {% else %}
+            <p>You must be logged in to leave a comment.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+</body>
+</html>

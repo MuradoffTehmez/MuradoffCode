@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Comment on {{ post.title }}</title>
+</head>
+<body>
+    <p>You have a new comment on your post "{{ post.title }}"</p>
+    <p><strong>Author:</strong> {{ comment.author }}</p>
+    <p><strong>Comment:</strong> {{ comment.content }}</p>
+    <p>View the comment: <a href="http://127.0.0.1:8000/post/{{ post.pk }}/">Here</a></p>
+</body>
+</html>

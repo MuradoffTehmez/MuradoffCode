@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Blog Posts{% endblock %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+</head>
+<body>
+    {% block content %}
+    <h1>Blog Posts</h1>
+    <form method="GET" action="{% url 'search_posts' %}">
+        <input type="text" name="q" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.created_at }}</p>
+            <p>{{ post.content|truncatewords:30 }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h2>{{ user.username }}'s Profile</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>Bio: {{ user_profile.bio }}</p>
+    {% if user_profile.profile_image %}
+        <img src="{{ user_profile.profile_image.url }}" alt="Profile Image">
+    {% endif %}
+    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+</body>
+</html>
